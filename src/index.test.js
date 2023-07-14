@@ -1,23 +1,20 @@
-import {expect} from 'chai';
+import { expect } from "chai";
 import jsdom from "jsdom";
 import fs from "fs";
 
-describe('Our first test', () => {
-  it('should pass', () => {
+describe("Our first test", () => {
+  it("should pass", () => {
     expect(true).to.equal(true);
   });
 });
 
-describe('index.htm', () =>{
-  it("should say hello", () => {
+describe("index.html", () => {
+  it("should have h1 that says users", () => {
     const index = fs.readFileSync("./src/index.html", "utf-8");
-    //creating an instance of dom and passing it the page
     const { JSDOM } = jsdom;
     const dom = new JSDOM(index);
-
     const h1 = dom.window.document.getElementsByTagName("h1")[0];
-    expect(h1.innerHTML).to.equal("hey, you. Yes, you!");
-    //closing window
+    expect(h1.innerHTML).to.equal("Users");
     dom.window.close();
-  })
+  });
 });
